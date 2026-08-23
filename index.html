@@ -198,126 +198,6 @@
         </div>
     </section>
 
-    <!-- Schedule & Booking System -->
-    <section id="schedule" class="py-24 px-6 bg-brand-dark border-t border-white/5">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-brand-gold text-xs font-semibold tracking-widest uppercase mb-3 block">Live Schedule</span>
-                <h2 class="font-serif text-3xl font-bold mb-4">实时排期与预约系统</h2>
-                <p class="text-neutral-400 text-sm">
-                    高亮区块为已预订/固定排课时段。暗色区块为可预约时段，点击即可锁定您的专属时间。
-                </p>
-            </div>
-
-            <!-- Day Selector -->
-            <div class="flex overflow-x-auto gap-3 mb-10 pb-4 scrollbar-hide snap-x justify-start md:justify-center">
-                <button class="px-6 py-2.5 rounded-full bg-brand-gold text-brand-dark text-sm font-semibold whitespace-nowrap snap-center transition-all">星期六 (SAT)</button>
-                <button class="px-6 py-2.5 rounded-full border border-white/10 text-neutral-400 text-sm hover:border-brand-gold hover:text-brand-gold whitespace-nowrap snap-center transition-all">星期日 (SUN)</button>
-                <button class="px-6 py-2.5 rounded-full border border-white/10 text-neutral-400 text-sm hover:border-brand-gold hover:text-brand-gold whitespace-nowrap snap-center transition-all">星期一 (MON)</button>
-                <button class="px-6 py-2.5 rounded-full border border-white/10 text-neutral-400 text-sm hover:border-brand-gold hover:text-brand-gold whitespace-nowrap snap-center transition-all">星期二 (TUE)</button>
-            </div>
-
-            <!-- Schedule Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Column 1: Main Hall (大厅) -->
-                <div class="bg-brand-card/40 rounded-2xl p-6 border border-white/5">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="font-serif text-xl font-semibold text-brand-cream">大厅 (开放场地/陪练)</h3>
-                        <span class="text-xs px-3 py-1 bg-white/5 rounded-md text-neutral-400">Main Hall</span>
-                    </div>
-                    <div class="space-y-3">
-                        <!-- Booked Slot (Highlighted) -->
-                        <div class="flex items-center p-4 rounded-xl bg-gradient-to-r from-brand-jade/80 to-brand-jade/40 border border-brand-jade text-brand-cream cursor-not-allowed shadow-lg shadow-brand-jade/10">
-                            <span class="font-mono text-sm w-16 opacity-90">09:00</span>
-                            <div class="flex-1 px-4 border-l border-white/20 ml-2">
-                                <p class="text-sm font-bold">少儿晨间陪练</p>
-                                <p class="text-xs opacity-70 mt-0.5">督导练习</p>
-                            </div>
-                            <span class="text-xs font-semibold bg-white/10 px-2 py-1 rounded">已满</span>
-                        </div>
-
-                        <!-- Available Slot (Dull) -->
-                        <div onclick="selectSlot(this, '大厅', '09:45')" class="group flex items-center p-4 rounded-xl bg-brand-dark/50 border border-white/5 text-neutral-500 hover:border-brand-gold hover:bg-brand-gold/5 cursor-pointer transition-all">
-                            <span class="font-mono text-sm w-16 group-hover:text-brand-gold transition-colors">09:45</span>
-                            <div class="flex-1 px-4 border-l border-white/10 ml-2 group-hover:border-brand-gold/30 transition-colors">
-                                <p class="text-sm font-medium">开放预约</p>
-                            </div>
-                            <span class="text-xs border border-neutral-700 px-2 py-1 rounded group-hover:border-brand-gold group-hover:text-brand-gold transition-all">预约</span>
-                        </div>
-                        
-                        <!-- Available Slot (Dull) -->
-                        <div onclick="selectSlot(this, '大厅', '10:30')" class="group flex items-center p-4 rounded-xl bg-brand-dark/50 border border-white/5 text-neutral-500 hover:border-brand-gold hover:bg-brand-gold/5 cursor-pointer transition-all">
-                            <span class="font-mono text-sm w-16 group-hover:text-brand-gold transition-colors">10:30</span>
-                            <div class="flex-1 px-4 border-l border-white/10 ml-2 group-hover:border-brand-gold/30 transition-colors">
-                                <p class="text-sm font-medium">开放预约</p>
-                            </div>
-                            <span class="text-xs border border-neutral-700 px-2 py-1 rounded group-hover:border-brand-gold group-hover:text-brand-gold transition-all">预约</span>
-                        </div>
-
-                        <!-- Booked Slot (Highlighted) -->
-                        <div class="flex items-center p-4 rounded-xl bg-gradient-to-r from-brand-gold/90 to-brand-gold/60 border border-brand-gold text-brand-dark cursor-not-allowed shadow-lg shadow-brand-gold/10">
-                            <span class="font-mono text-sm w-16 font-semibold">11:15</span>
-                            <div class="flex-1 px-4 border-l border-brand-dark/20 ml-2">
-                                <p class="text-sm font-bold">家庭齐乐时光</p>
-                                <p class="text-xs opacity-80 mt-0.5">开放练习</p>
-                            </div>
-                            <span class="text-xs font-bold bg-brand-dark/10 px-2 py-1 rounded">已满</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Column 2: Private Room (独立琴房) -->
-                <div class="bg-brand-card/40 rounded-2xl p-6 border border-white/5">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="font-serif text-xl font-semibold text-brand-cream">独立琴房 (私人课)</h3>
-                        <span class="text-xs px-3 py-1 bg-white/5 rounded-md text-neutral-400">Private Room</span>
-                    </div>
-                    <div class="space-y-3">
-                        <!-- Booked Slot (Highlighted) -->
-                        <div class="flex items-center p-4 rounded-xl bg-gradient-to-r from-brand-gold/90 to-brand-gold/60 border border-brand-gold text-brand-dark cursor-not-allowed shadow-lg shadow-brand-gold/10">
-                            <span class="font-mono text-sm w-16 font-semibold">09:00</span>
-                            <div class="flex-1 px-4 border-l border-brand-dark/20 ml-2">
-                                <p class="text-sm font-bold">青少年古琴</p>
-                                <p class="text-xs opacity-80 mt-0.5">私人课程</p>
-                            </div>
-                            <span class="text-xs font-bold bg-brand-dark/10 px-2 py-1 rounded">已满</span>
-                        </div>
-
-                        <!-- Booked Slot (Highlighted) -->
-                        <div class="flex items-center p-4 rounded-xl bg-gradient-to-r from-brand-gold/90 to-brand-gold/60 border border-brand-gold text-brand-dark cursor-not-allowed shadow-lg shadow-brand-gold/10">
-                            <span class="font-mono text-sm w-16 font-semibold">09:45</span>
-                            <div class="flex-1 px-4 border-l border-brand-dark/20 ml-2">
-                                <p class="text-sm font-bold">青少年古筝</p>
-                                <p class="text-xs opacity-80 mt-0.5">私人课程</p>
-                            </div>
-                            <span class="text-xs font-bold bg-brand-dark/10 px-2 py-1 rounded">已满</span>
-                        </div>
-
-                        <!-- Available Slot (Dull) -->
-                        <div onclick="selectSlot(this, '独立琴房', '10:30')" class="group flex items-center p-4 rounded-xl bg-brand-dark/50 border border-white/5 text-neutral-500 hover:border-brand-gold hover:bg-brand-gold/5 cursor-pointer transition-all">
-                            <span class="font-mono text-sm w-16 group-hover:text-brand-gold transition-colors">10:30</span>
-                            <div class="flex-1 px-4 border-l border-white/10 ml-2 group-hover:border-brand-gold/30 transition-colors">
-                                <p class="text-sm font-medium">开放预约</p>
-                            </div>
-                            <span class="text-xs border border-neutral-700 px-2 py-1 rounded group-hover:border-brand-gold group-hover:text-brand-gold transition-all">预约</span>
-                        </div>
-                        
-                        <!-- Available Slot (Dull) -->
-                        <div onclick="selectSlot(this, '独立琴房', '11:15')" class="group flex items-center p-4 rounded-xl bg-brand-dark/50 border border-white/5 text-neutral-500 hover:border-brand-gold hover:bg-brand-gold/5 cursor-pointer transition-all">
-                            <span class="font-mono text-sm w-16 group-hover:text-brand-gold transition-colors">11:15</span>
-                            <div class="flex-1 px-4 border-l border-white/10 ml-2 group-hover:border-brand-gold/30 transition-colors">
-                                <p class="text-sm font-medium">开放预约</p>
-                            </div>
-                            <span class="text-xs border border-neutral-700 px-2 py-1 rounded group-hover:border-brand-gold group-hover:text-brand-gold transition-all">预约</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
     <!-- Booking / Lead Capture Form -->
     <section id="book-trial" class="py-20 px-6 bg-brand-card/60 border-t border-white/10">
         <div class="max-w-xl mx-auto">
@@ -469,31 +349,7 @@
         <p class="mt-2">Orchard Road, Singapore • 高端华乐艺术俱乐部</p>
     </footer>
 
-    <!-- Scheduling & Form Logic -->
     <script>
-        let selectedTime = "";
-        let selectedRoom = "";
-
-        // Function to handle slot selection and styling updates
-        function selectSlot(element, room, time) {
-            // Remove active states from all available slots
-            document.querySelectorAll('.group.cursor-pointer').forEach(el => {
-                el.classList.remove('bg-brand-gold/20', 'border-brand-gold', 'text-brand-gold');
-                el.classList.add('border-white/5', 'text-neutral-500');
-            });
-
-            // Add active styling to the clicked slot
-            element.classList.remove('border-white/5', 'text-neutral-500');
-            element.classList.add('bg-brand-gold/20', 'border-brand-gold', 'text-brand-gold');
-
-            selectedTime = time;
-            selectedRoom = room;
-
-            // Automatically smooth-scroll to the booking form
-            document.getElementById('book-trial').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Updated form submission handling
         function handleFormSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('parentName').value;
@@ -501,20 +357,15 @@
             const age = document.getElementById('studentAge').value;
             const tier = document.getElementById('targetTier').value;
 
-            // Append time slot and room to the message if one was selected
-            let bookingDetails = "";
-            if (selectedTime !== "") {
-                bookingDetails = `\n预约场域: ${selectedRoom}\n意向时间: ${selectedTime}`;
-            }
-
-            const message = encodeURIComponent(`您好 逸梅草堂，我想为孩子/自己预约 $68 的 1对1 评估体验课。\n\n姓名: ${name}\n电话: ${phone}\n学员阶段: ${age}\n意向档位: ${tier}${bookingDetails}`);
+            // Generate WhatsApp direct link for zero-cost instant lead routing
+            const message = encodeURIComponent(`您好 逸梅草堂，我想为孩子/自己预约 $68 的 1对1 评估体验课。\n\n姓名: ${name}\n电话: ${phone}\n学员阶段: ${age}\n意向档位: ${tier}`);
             
-            // UI Feedback
+            // Show feedback
             const status = document.getElementById('formStatus');
             status.classList.remove('hidden');
             status.textContent = '正在为您跳转至 WhatsApp 预约通道...';
 
-            // WhatsApp Redirect
+            // Redirect to client's business WhatsApp (Replace 6500000000 with client's actual number)
             setTimeout(() => {
                 window.open(`https://wa.me/84049528?text=${message}`, '_blank');
             }, 800);
@@ -522,3 +373,4 @@
     </script>
 </body>
 </html>
+
