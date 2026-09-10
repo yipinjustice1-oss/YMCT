@@ -176,9 +176,9 @@
         </div>
     </section>
 
-    <!-- Booking / Lead Capture Form (WhatsApp API Integration) -->
+    <!-- Google Calendar Booking Section -->
     <section id="book-trial" class="py-20 px-6 bg-brand-card/60 border-t border-white/10">
-        <div class="max-w-xl mx-auto">
+        <div class="max-w-4xl mx-auto">
             <div class="text-center mb-10">
                 <h2 class="font-serif text-3xl font-bold mb-3">预约 1对1 评估体验课</h2>
                 <p class="text-neutral-400 text-sm">
@@ -186,39 +186,24 @@
                 </p>
             </div>
             
-            <form onsubmit="handleFormSubmit(event)" class="space-y-4 bg-brand-dark p-8 rounded-2xl border border-white/10 shadow-2xl">
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">家长/申请人姓名 / Name</label>
-                    <input type="text" id="parentName" required placeholder="例如：王女士 / Mrs. Wang" class="w-full px-4 py-3 rounded-xl bg-brand-card border border-white/10 text-brand-cream focus:outline-none focus:border-brand-gold text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">WhatsApp / 联络电话</label>
-                    <input type="tel" id="contactPhone" required placeholder="+65 9123 4567" class="w-full px-4 py-3 rounded-xl bg-brand-card border border-white/10 text-brand-cream focus:outline-none focus:border-brand-gold text-sm">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">学员年龄</label>
-                        <select id="studentAge" class="w-full px-4 py-3 rounded-xl bg-brand-card border border-white/10 text-neutral-300 focus:outline-none focus:border-brand-gold text-sm">
-                            <option>少儿 (4-7岁)</option>
-                            <option>青少儿 (8-14岁)</option>
-                            <option>成人零基础</option>
-                            <option>成人有基础</option>
-                            <option>全家共同参与</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">意向会员档位</label>
-                        <select id="targetTier" class="w-full px-4 py-3 rounded-xl bg-brand-card border border-white/10 text-neutral-300 focus:outline-none focus:border-brand-gold text-sm">
-                            <option>基础会员 ($4,500)</option>
-                            <option>家庭会员 ($6,888)</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" class="w-full py-4 rounded-xl bg-brand-gold text-brand-dark font-bold text-sm hover:bg-brand-goldLight transition-all mt-4">
-                    立即锁定体验名额
-                </button>
-                <p id="formStatus" class="text-xs text-center text-brand-gold mt-2 hidden"></p>
-            </form>
+            <div class="bg-brand-cream rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <!-- Replace the src URL with your actual Google Calendar Appointment schedule link -->
+                <iframe 
+                    src="https://calendar.app.google/HfmD4H2BkCH3oFhd6" 
+                    style="border: 0" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0"
+                    title="Google Calendar Booking">
+                </iframe>
+            </div>
+
+            <div class="mt-8 text-center bg-brand-dark p-6 rounded-2xl border border-white/10">
+                <p class="text-neutral-400 text-sm mb-4">需要其他时段或有特殊要求？</p>
+                <a href="https://wa.me/91520999" target="_blank" class="inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-brand-gold text-brand-dark font-bold text-sm hover:bg-brand-goldLight transition-all">
+                    通过 WhatsApp 联系我们
+                </a>
+            </div>
         </div>
     </section>
 
@@ -350,28 +335,5 @@
         <p class="mt-2">高端华乐艺术俱乐部</p>
     </footer>
 
-    <!-- Form Handling Script -->
-    <script>
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('parentName').value;
-            const phone = document.getElementById('contactPhone').value;
-            const age = document.getElementById('studentAge').value;
-            const tier = document.getElementById('targetTier').value;
-
-            // Generate WhatsApp direct link for zero-cost instant lead routing
-            const message = encodeURIComponent(`您好 逸梅草堂，我想为孩子/自己预约 $68 的 1对1 评估体验课。\n\n姓名: ${name}\n电话: ${phone}\n学员阶段: ${age}\n意向档位: ${tier}`);
-            
-            // Show feedback
-            const status = document.getElementById('formStatus');
-            status.classList.remove('hidden');
-            status.textContent = '正在为您跳转至 WhatsApp 预约通道...';
-
-            // Redirect to client's business WhatsApp (Replace 91520999 with client's actual number if needed)
-            setTimeout(() => {
-                window.open(`https://wa.me/91520999?text=${message}`, '_blank');
-            }, 800);
-        }
-    </script>
 </body>
 </html>
