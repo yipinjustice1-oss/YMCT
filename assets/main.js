@@ -31,79 +31,144 @@ function toggleMobileMenu() {
 }
 
 /* ---------- Product catalog ---------- */
-/* Prices are in SGD, stored as integers (cents) to avoid float rounding. */
+/* Prices are in SGD, stored as integers (cents) to avoid float rounding.
+ * Sourced from the current inventory sheet (仲尼/艺林古筝价格表) — series,
+ * model name, material, and product photo per row; price is the
+ * "manually edited auspicious numbers" column, which is the final
+ * selling price. Series order matches the sheet: 仲尼·志士 → 仲尼·君子 →
+ * 仲尼·大贤 → 仲尼·至圣 → 艺林. */
+const YMCT_SERIES = [
+    { id: 'zhongni-zhishi', name_zh: '仲尼·志士', name_en: 'Zhongni · Aspirant Series' },
+    { id: 'zhongni-junzi', name_zh: '仲尼·君子', name_en: 'Zhongni · Gentleman Series' },
+    { id: 'zhongni-daxian', name_zh: '仲尼·大贤', name_en: 'Zhongni · Great Sage Series' },
+    { id: 'zhongni-zhisheng', name_zh: '仲尼·至圣', name_en: 'Zhongni · Supreme Sage Series' },
+    { id: 'yilin', name_zh: '艺林', name_en: 'Yilin Series' }
+];
+
 const YMCT_PRODUCTS = [
     {
-        id: 'gz-student',
-        category: 'instrument',
-        name_zh: '学生入门古筝（21弦）',
-        name_en: 'Student Guzheng (21-String)',
-        desc_zh: '适合初学者的稳定入门古筝，实木琴身，随附琴架与调音工具。',
-        desc_en: 'A stable entry-level guzheng for beginners. Solid wood body, includes stand and tuning tool.',
-        price: 68000
+        id: 'mingde',
+        series: 'zhongni-zhishi',
+        name_zh: '明德',
+        name_en: 'Míngdé — Bright Virtue',
+        material_zh: '花梨木',
+        material_en: 'Rosewood (Huali)',
+        image: 'assets/products/mingde.jpg',
+        price: 136800
     },
     {
-        id: 'gz-intermediate',
-        category: 'instrument',
-        name_zh: '进阶古筝（3-6级适用）',
-        name_en: 'Intermediate Guzheng (Grade 3–6)',
-        desc_zh: '升级音板与出音表现，适合已完成基础考级的学生。',
-        desc_en: 'Upgraded soundboard and projection, ideal for students who have completed foundational grading.',
-        price: 128000
+        id: 'taoyao',
+        series: 'zhongni-zhishi',
+        name_zh: '桃夭',
+        name_en: 'Táoyāo — Peach Blossom',
+        material_zh: '花梨木',
+        material_en: 'Rosewood (Huali)',
+        image: 'assets/products/taoyao.jpg',
+        price: 136800
     },
     {
-        id: 'gz-professional',
-        category: 'instrument',
-        name_zh: '专业演奏古筝',
-        name_en: 'Professional Performance Guzheng',
-        desc_zh: '精选桐木手工制作，音色饱满，专为舞台演出与高阶演奏者打造。',
-        desc_en: 'Hand-carved from select paulownia wood with a rich, full tone — built for the stage and advanced players.',
-        price: 288000
+        id: 'zhishan',
+        series: 'zhongni-junzi',
+        name_zh: '至善（137）',
+        name_en: 'Zhìshàn — Utmost Goodness (137cm)',
+        material_zh: '非檀木',
+        material_en: 'Non-sandalwood hardwood',
+        image: 'assets/products/zhishan.jpg',
+        price: 90000
     },
     {
-        id: 'acc-strings',
-        category: 'accessory',
-        name_zh: '古筝专用琴弦（全套21根）',
-        name_en: 'Guzheng String Set (Full Set of 21)',
-        desc_zh: '标准21弦全套替换弦，音质稳定持久。',
-        desc_en: 'A full 21-string replacement set with stable, long-lasting tone.',
-        price: 4500
+        id: 'zhichu',
+        series: 'zhongni-junzi',
+        name_zh: '之初（137）',
+        name_en: 'Zhīchū — The Beginning (137cm)',
+        material_zh: '黑胡桃木',
+        material_en: 'Black Walnut',
+        image: 'assets/products/zhichu.jpg',
+        price: 108000
     },
     {
-        id: 'acc-picks',
-        category: 'accessory',
-        name_zh: '义甲 / 指甲套装',
-        name_en: 'Finger Picks Set',
-        desc_zh: '舒适贴合手指，适合日常练习与登台演出。',
-        desc_en: 'Comfortable, well-fitted picks suitable for daily practice and performances.',
-        price: 3800
+        id: 'zijin',
+        series: 'zhongni-junzi',
+        name_zh: '子衿',
+        name_en: 'Zǐjīn — Blue Collar',
+        material_zh: '进口非洲巴花木',
+        material_en: 'Imported African Bubinga',
+        image: 'assets/products/zijin.jpg',
+        price: 160000
     },
     {
-        id: 'acc-stand',
-        category: 'accessory',
-        name_zh: '古筝琴架',
-        name_en: 'Guzheng Stand',
-        desc_zh: '稳固耐用，可折叠收纳，方便搬运。',
-        desc_en: 'Sturdy and durable, foldable for easy storage and transport.',
-        price: 12000
+        id: 'zhuoyu',
+        series: 'zhongni-junzi',
+        name_zh: '琢玉',
+        name_en: 'Zhuóyù — Carved Jade',
+        material_zh: '桐木',
+        material_en: 'Paulownia',
+        image: 'assets/products/zhuoyu.jpg',
+        price: 168000
     },
     {
-        id: 'acc-bag',
-        category: 'accessory',
-        name_zh: '古筝防潮包',
-        name_en: 'Guzheng Dust & Travel Bag',
-        desc_zh: '防潮防尘，加厚保护，适合日常存放与外出携带。',
-        desc_en: 'Moisture- and dust-resistant with thick padding — great for storage and travel.',
-        price: 8500
+        id: 'jinyu',
+        series: 'zhongni-junzi',
+        name_zh: '瑾瑜',
+        name_en: 'Jǐnyú — Fine Jade',
+        material_zh: '黄檀木',
+        material_en: 'Yellow Sandalwood',
+        image: 'assets/products/jinyu.jpg',
+        price: 228000
+    },
+    {
+        id: 'suifeng',
+        series: 'zhongni-daxian',
+        name_zh: '岁丰',
+        name_en: 'Suìfēng — Abundant Harvest',
+        material_zh: '黑金柚木',
+        material_en: 'Black Gold Teak',
+        image: 'assets/products/suifeng.jpg',
+        price: 249900
+    },
+    {
+        id: 'xiujixinkuan',
+        series: 'zhongni-daxian',
+        name_zh: '修己新款',
+        name_en: 'Xiūjǐ — Self-Cultivation (New Edition)',
+        material_zh: '黑金柚木',
+        material_en: 'Black Gold Teak',
+        image: 'assets/products/xiujixinkuan.jpg',
+        price: 298800
+    },
+    {
+        id: 'guichaohuan',
+        series: 'zhongni-zhisheng',
+        name_zh: '归朝欢',
+        name_en: 'Guī Cháo Huān — Return to Court in Joy',
+        material_zh: '紫檀',
+        material_en: 'Zitan Rosewood',
+        image: 'assets/products/guichaohuan.jpg',
+        price: 1080000
+    },
+    {
+        id: 'yueshan',
+        series: 'yilin',
+        name_zh: '乐（yào）山',
+        name_en: 'Yào Shān — Joy in Mountains',
+        material_zh: '黑柿木',
+        material_en: 'Black Persimmon Wood',
+        image: 'assets/products/yueshan.jpg',
+        price: 488800
     }
 ];
 
 const YMCT_CART_KEY = 'ymct_cart';
-const YMCT_SHIPPING_FLAT_CENTS = 1500;
-const YMCT_FREE_SHIPPING_THRESHOLD_CENTS = 50000;
+/* Each guzheng is a handcrafted, fragile instrument, so delivery is arranged
+ * personally with the customer (white-glove/in-person handover) rather than
+ * a flat courier fee — no shipping charge is added at checkout. */
 
 function ymctFindProduct(id) {
     return YMCT_PRODUCTS.find(p => p.id === id);
+}
+
+function ymctFindSeries(id) {
+    return YMCT_SERIES.find(s => s.id === id);
 }
 
 function ymctFormatPrice(cents) {
@@ -178,11 +243,6 @@ function ymctCartCount() {
 
 function ymctCartSubtotal() {
     return ymctCartLines().reduce((sum, line) => sum + line.lineTotal, 0);
-}
-
-function ymctShippingCost(subtotal) {
-    if (subtotal <= 0) return 0;
-    return subtotal >= YMCT_FREE_SHIPPING_THRESHOLD_CENTS ? 0 : YMCT_SHIPPING_FLAT_CENTS;
 }
 
 function ymctUpdateCartBadge() {

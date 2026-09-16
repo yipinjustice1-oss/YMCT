@@ -7,11 +7,12 @@ Static, no-build website for 逸梅草堂 (YMCT) — plain HTML + Tailwind CSS (
 | Page | Purpose |
 |---|---|
 | `index.html` | Main marketing page: concept, membership tiers, contact, location, FAQ, T&Cs |
-| `shop.html` | Guzheng & accessories catalog with an add-to-cart panel |
+| `shop.html` | Live guzheng catalog (grouped by series) with an add-to-cart panel |
 | `checkout.html` | Cart review → shipping details → payment method → order confirmation |
 | `blog.html` | Blog index (for SEO) |
 | `blog/*.html` | Individual blog posts, each with its own meta description, canonical URL, and JSON-LD `BlogPosting` schema |
 | `assets/main.js` | Shared JS: language toggle, mobile nav, product catalog, and cart logic used by every page |
+| `assets/products/*.jpg` | Real product photos, one per guzheng |
 
 ## Checkout & payments
 
@@ -35,9 +36,11 @@ Also update the bank transfer placeholder text (bank name, account name, account
 
 ## Updating the product catalog
 
-All products (guzhengs + accessories), including names, descriptions, and prices, are defined in one place: the `YMCT_PRODUCTS` array near the top of `assets/main.js`. Prices are stored in cents (e.g. `68000` = S$680.00) to avoid floating-point rounding errors. Add, remove, or edit entries there and both `shop.html` and `checkout.html` pick up the change automatically.
+All products, including series, names, materials, photos, and prices, are defined in one place: the `YMCT_PRODUCTS` array (and the `YMCT_SERIES` list it groups by) near the top of `assets/main.js`. Prices are stored in cents (e.g. `136800` = S$1,368.00) to avoid floating-point rounding errors. Add, remove, or edit entries there and both `shop.html` and `checkout.html` pick up the change automatically. Product photos live in `assets/products/`; point a product's `image` field at the right file there.
 
-Shipping is a flat S$15 within Singapore, free over S$500 — also configurable via `YMCT_SHIPPING_FLAT_CENTS` and `YMCT_FREE_SHIPPING_THRESHOLD_CENTS` in `assets/main.js`.
+**Current catalog source:** the 11 products live in the shop are pulled from the business's inventory spreadsheet (仲尼/艺林古筝价格表) — the final selling price used is the sheet's "manually edited auspicious numbers" column, and photos were extracted from the same workbook and matched to each row. When inventory changes, update `YMCT_PRODUCTS` (and add/replace the matching file in `assets/products/`) to keep the site in sync.
+
+There is no shipping fee calculated at checkout — each guzheng is a handcrafted, fragile instrument, so delivery is arranged personally with the customer after the order is confirmed (see `ymctSubmitOrder()` in `checkout.html`).
 
 ## Blog / SEO
 

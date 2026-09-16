@@ -170,8 +170,8 @@
                             <span id="summary-subtotal">S$0.00</span>
                         </div>
                         <div class="flex justify-between text-neutral-400">
-                            <span><span class="lang-zh">运费</span><span class="lang-en">Shipping</span></span>
-                            <span id="summary-shipping">S$0.00</span>
+                            <span><span class="lang-zh">配送</span><span class="lang-en">Delivery</span></span>
+                            <span><span class="lang-zh">另行安排</span><span class="lang-en">Arranged separately</span></span>
                         </div>
                         <div class="flex justify-between font-bold text-brand-cream text-base pt-2">
                             <span><span class="lang-zh">总计</span><span class="lang-en">Total</span></span>
@@ -236,8 +236,9 @@
         function summaryLineHtml(line) {
             const p = line.product;
             return `
-            <div class="flex justify-between text-sm">
-                <span class="text-neutral-300"><span class="lang-zh">${p.name_zh}</span><span class="lang-en">${p.name_en}</span> × ${line.qty}</span>
+            <div class="flex items-center gap-3 text-sm">
+                <img src="${p.image}" alt="${p.name_zh}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0 border border-white/10">
+                <span class="text-neutral-300 flex-1"><span class="lang-zh">${p.name_zh}</span><span class="lang-en">${p.name_en}</span> × ${line.qty}</span>
                 <span class="text-neutral-400 whitespace-nowrap ml-3">${ymctFormatPrice(line.lineTotal)}</span>
             </div>`;
         }
@@ -256,10 +257,8 @@
 
             document.getElementById('summary-items').innerHTML = lines.map(summaryLineHtml).join('');
             const subtotal = ymctCartSubtotal();
-            const shipping = ymctShippingCost(subtotal);
             document.getElementById('summary-subtotal').textContent = ymctFormatPrice(subtotal);
-            document.getElementById('summary-shipping').textContent = shipping === 0 ? (document.documentElement.lang === 'zh-SG' ? '免费' : 'Free') : ymctFormatPrice(shipping);
-            document.getElementById('summary-total').textContent = ymctFormatPrice(subtotal + shipping);
+            document.getElementById('summary-total').textContent = ymctFormatPrice(subtotal);
         }
 
         function ymctRenderPaymentDetail() {
@@ -314,8 +313,7 @@
 
             const data = new FormData(form);
             const subtotal = ymctCartSubtotal();
-            const shipping = ymctShippingCost(subtotal);
-            const total = subtotal + shipping;
+            const total = subtotal;
             const orderNumber = 'YMCT-' + Date.now().toString(36).toUpperCase();
 
             const itemLines = lines.map(l => `- ${l.product.name_en} (${l.product.name_zh}) x${l.qty} — ${ymctFormatPrice(l.lineTotal)}`).join('\n');
@@ -330,7 +328,7 @@ Items:
 ${itemLines}
 
 Subtotal: ${ymctFormatPrice(subtotal)}
-Shipping: ${shipping === 0 ? 'Free' : ymctFormatPrice(shipping)}
+Delivery: Arranged separately
 Total: ${ymctFormatPrice(total)}
 Payment Method: ${paymentMethodLabel(data.get('payment'))}`;
 

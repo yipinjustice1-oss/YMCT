@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>古筝商城 Guzheng Shop | 逸梅草堂 YMCT</title>
-    <meta name="description" content="选购逸梅草堂精选古筝与配件：入门、进阶与专业演奏古筝，琴弦、义甲、琴架一应俱全。新加坡本地配送。Shop premium guzhengs and accessories from YMCT, Singapore.">
+    <meta name="description" content="选购逸梅草堂现货古筝：仲尼·志士、君子、大贤、至圣系列与艺林系列手工古筝，实物拍摄，新加坡本地配送。Shop in-stock handcrafted Zhongni & Yilin guzhengs from YMCT, Singapore.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,12 +88,12 @@
             <span class="lang-zh">古筝商城</span><span class="lang-en">Guzheng Shop</span>
         </span>
         <h1 class="font-serif text-3xl md:text-5xl font-bold mb-4">
-            <span class="lang-zh">精选古筝与专业配件</span>
-            <span class="lang-en">Curated Guzhengs & Professional Accessories</span>
+            <span class="lang-zh">仲尼 · 艺林 手工古筝</span>
+            <span class="lang-en">Zhongni & Yilin Handcrafted Guzhengs</span>
         </h1>
         <p class="text-neutral-400 text-sm md:text-base max-w-2xl mx-auto">
-            <span class="lang-zh">从入门到专业演奏级别，我们为不同阶段的学习者精选合适的古筝与耗材。新加坡本地配送，消费满 S$500 免运费。</span>
-            <span class="lang-en">From beginner to professional performance grade, we curate the right guzheng and supplies for every stage. Delivered within Singapore — free shipping on orders over S$500.</span>
+            <span class="lang-zh">现货古筝，每一台皆为实物拍摄。作为贵重乐器，配送将在订单确认后由我们团队与您亲自安排。</span>
+            <span class="lang-en">Current in-stock guzhengs — every photo is of the actual instrument. As a valuable, delicate instrument, delivery is arranged personally with our team after your order is confirmed.</span>
         </p>
     </header>
 
@@ -101,21 +101,8 @@
     <section class="px-6 pb-24">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-            <!-- Product grid -->
-            <div class="lg:col-span-2">
-                <div class="mb-8">
-                    <h2 class="font-serif text-xl font-bold text-brand-gold mb-1">
-                        <span class="lang-zh">古筝</span><span class="lang-en">Instruments</span>
-                    </h2>
-                    <div id="grid-instrument" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4"></div>
-                </div>
-                <div>
-                    <h2 class="font-serif text-xl font-bold text-brand-gold mb-1">
-                        <span class="lang-zh">配件</span><span class="lang-en">Accessories</span>
-                    </h2>
-                    <div id="grid-accessory" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4"></div>
-                </div>
-            </div>
+            <!-- Product grid, grouped by series -->
+            <div id="product-series" class="lg:col-span-2 space-y-10"></div>
 
             <!-- Cart -->
             <div id="cart" class="lg:col-span-1">
@@ -135,8 +122,8 @@
                             <span id="cart-subtotal">S$0.00</span>
                         </div>
                         <div class="flex justify-between text-neutral-400">
-                            <span><span class="lang-zh">运费</span><span class="lang-en">Shipping</span></span>
-                            <span id="cart-shipping">S$0.00</span>
+                            <span><span class="lang-zh">配送</span><span class="lang-en">Delivery</span></span>
+                            <span id="cart-shipping"><span class="lang-zh">另行安排</span><span class="lang-en">Arranged separately</span></span>
                         </div>
                         <div class="flex justify-between font-bold text-brand-cream text-base pt-2">
                             <span><span class="lang-zh">总计</span><span class="lang-en">Total</span></span>
@@ -147,8 +134,8 @@
                         <span class="lang-zh">前往结账</span><span class="lang-en">Proceed to Checkout</span>
                     </button>
                     <p class="text-[11px] text-neutral-500 mt-3 text-center">
-                        <span class="lang-zh">满 S$500 免运费，新加坡境内配送。大批量或学校订购请直接联系我们。</span>
-                        <span class="lang-en">Free shipping over S$500, Singapore delivery only. For bulk or school orders, please contact us directly.</span>
+                        <span class="lang-zh">新加坡境内配送将在订单确认后与您协商安排。大批量或学校订购请直接联系我们。</span>
+                        <span class="lang-en">Delivery within Singapore is arranged with you after order confirmation. For bulk or school orders, please contact us directly.</span>
                     </p>
                 </div>
             </div>
@@ -168,20 +155,18 @@
 
     <script src="assets/main.js"></script>
     <script>
-        const CATEGORY_LABELS = { instrument: 'instrument', accessory: 'accessory' };
-
         function productCardHtml(p) {
             return `
             <div class="bg-brand-card border border-white/10 rounded-2xl overflow-hidden flex flex-col">
-                <div class="h-40 bg-gradient-to-br from-brand-jade/50 via-brand-card to-brand-dark flex items-center justify-center border-b border-white/5">
-                    <span class="font-serif text-brand-gold/70 text-sm tracking-widest uppercase">${p.category === 'instrument' ? '古筝 Guzheng' : '配件 Accessory'}</span>
+                <div class="h-56 bg-brand-dark border-b border-white/5 flex items-center justify-center overflow-hidden">
+                    <img src="${p.image}" alt="${p.name_zh} ${p.name_en}" class="h-full w-full object-cover">
                 </div>
                 <div class="p-5 flex flex-col flex-1">
                     <h3 class="font-serif text-base font-semibold text-brand-cream mb-1">
                         <span class="lang-zh">${p.name_zh}</span><span class="lang-en">${p.name_en}</span>
                     </h3>
                     <p class="text-xs text-neutral-400 leading-relaxed mb-4 flex-1">
-                        <span class="lang-zh">${p.desc_zh}</span><span class="lang-en">${p.desc_en}</span>
+                        <span class="lang-zh">材质：${p.material_zh}</span><span class="lang-en">Material: ${p.material_en}</span>
                     </p>
                     <div class="flex items-center justify-between">
                         <span class="font-bold text-brand-gold">${ymctFormatPrice(p.price)}</span>
@@ -193,15 +178,29 @@
             </div>`;
         }
 
+        function seriesSectionHtml(series) {
+            const products = YMCT_PRODUCTS.filter(p => p.series === series.id);
+            if (products.length === 0) return '';
+            return `
+            <div>
+                <h2 class="font-serif text-xl font-bold text-brand-gold mb-1">
+                    <span class="lang-zh">${series.name_zh}</span><span class="lang-en">${series.name_en}</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+                    ${products.map(productCardHtml).join('')}
+                </div>
+            </div>`;
+        }
+
         function renderGrid() {
-            document.getElementById('grid-instrument').innerHTML = YMCT_PRODUCTS.filter(p => p.category === 'instrument').map(productCardHtml).join('');
-            document.getElementById('grid-accessory').innerHTML = YMCT_PRODUCTS.filter(p => p.category === 'accessory').map(productCardHtml).join('');
+            document.getElementById('product-series').innerHTML = YMCT_SERIES.map(seriesSectionHtml).join('');
         }
 
         function cartLineHtml(line) {
             const p = line.product;
             return `
             <div class="flex items-start gap-3">
+                <img src="${p.image}" alt="${p.name_zh}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-white/10">
                 <div class="flex-1">
                     <p class="text-sm text-brand-cream font-medium leading-tight">
                         <span class="lang-zh">${p.name_zh}</span><span class="lang-en">${p.name_en}</span>
@@ -229,10 +228,8 @@
             checkoutBtn.disabled = lines.length === 0;
 
             const subtotal = ymctCartSubtotal();
-            const shipping = ymctShippingCost(subtotal);
             document.getElementById('cart-subtotal').textContent = ymctFormatPrice(subtotal);
-            document.getElementById('cart-shipping').textContent = shipping === 0 && subtotal > 0 ? (document.documentElement.lang === 'zh-SG' ? '免费' : 'Free') : ymctFormatPrice(shipping);
-            document.getElementById('cart-total').textContent = ymctFormatPrice(subtotal + shipping);
+            document.getElementById('cart-total').textContent = ymctFormatPrice(subtotal);
             ymctUpdateCartBadge();
         }
 
