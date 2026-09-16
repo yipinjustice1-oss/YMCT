@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>逸梅草堂 YMCT | 新加坡高端华乐艺术俱乐部 Premium Chinese Music Art Club</title>
+    <meta name="description" content="逸梅草堂 YMCT：新加坡高端华乐艺术俱乐部，提供古筝课程、会员体系与古筝商城。Premium Chinese music art club in Singapore offering guzheng lessons, memberships, and a guzheng shop.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Noto Serif SC & Inter -->
@@ -44,17 +45,23 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
+            <a href="index.html" class="flex items-center space-x-3">
                 <!-- Logo updated to the verbatim file name -->
                 <img src="WhatsApp Image 2026-08-09 at 18.57.27_2.jpeg" alt="逸梅草堂 YMCT" class="h-10 w-auto invert opacity-90 object-contain" onerror="this.style.display='none'">
                 <span class="font-serif text-xl font-bold tracking-widest text-brand-gold">逸梅草堂</span>
-            </div>
-            <div class="hidden md:flex items-center space-x-8 text-sm text-neutral-300 font-medium">
+            </a>
+            <div class="hidden md:flex items-center space-x-7 text-sm text-neutral-300 font-medium">
                 <a href="#concept" class="hover:text-brand-gold transition-colors">
                     <span class="lang-zh">核心理念</span><span class="lang-en">Concept</span>
                 </a>
                 <a href="#membership" class="hover:text-brand-gold transition-colors">
                     <span class="lang-zh">会员体系</span><span class="lang-en">Membership</span>
+                </a>
+                <a href="shop.html" class="hover:text-brand-gold transition-colors">
+                    <span class="lang-zh">商城</span><span class="lang-en">Shop</span>
+                </a>
+                <a href="blog.html" class="hover:text-brand-gold transition-colors">
+                    <span class="lang-zh">博客</span><span class="lang-en">Blog</span>
                 </a>
                 <a href="#contact" class="hover:text-brand-gold transition-colors">
                     <span class="lang-zh">预约体验</span><span class="lang-en">Book Trial</span>
@@ -63,20 +70,47 @@
                     <span class="lang-zh">地址指引</span><span class="lang-en">Location</span>
                 </a>
             </div>
-            
-            <div class="flex items-center space-x-4">
+
+            <div class="flex items-center space-x-3 md:space-x-4">
                 <!-- Language Toggle Button -->
-                <button onclick="toggleLanguage()" class="flex items-center gap-1.5 text-neutral-400 hover:text-brand-gold transition-colors text-sm font-medium mr-2">
+                <button onclick="toggleLanguage()" type="button" aria-label="Toggle language" class="hidden sm:flex items-center gap-1.5 text-neutral-400 hover:text-brand-gold transition-colors text-sm font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
                     <span class="lang-zh">EN</span><span class="lang-en">中文</span>
                 </button>
 
-                <a href="#contact" class="px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark text-xs font-semibold uppercase tracking-wider hover:bg-brand-goldLight transition-all text-center whitespace-nowrap">
+                <!-- Cart -->
+                <a href="shop.html" class="relative text-neutral-300 hover:text-brand-gold transition-colors p-2" aria-label="View cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 1.907-4.7 2.355-7.171a1.125 1.125 0 00-1.087-1.079H5.106M14.25 14.25L15.75 5" />
+                    </svg>
+                    <span class="cart-badge-count hidden absolute -top-1 -right-1 bg-brand-gold text-brand-dark text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
+                </a>
+
+                <a href="#contact" class="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark text-xs font-semibold uppercase tracking-wider hover:bg-brand-goldLight transition-all text-center whitespace-nowrap">
                     <span class="lang-zh">联系我们</span><span class="lang-en">Contact Us</span>
                 </a>
+
+                <!-- Mobile menu toggle -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-neutral-300 hover:text-brand-gold p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile menu panel -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-brand-dark px-6 py-4 space-y-1">
+            <a href="#concept" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">核心理念</span><span class="lang-en">Concept</span></a>
+            <a href="#membership" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">会员体系</span><span class="lang-en">Membership</span></a>
+            <a href="shop.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">商城</span><span class="lang-en">Shop</span></a>
+            <a href="blog.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">博客</span><span class="lang-en">Blog</span></a>
+            <a href="#contact" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">预约体验</span><span class="lang-en">Book Trial</span></a>
+            <a href="#location" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">地址指引</span><span class="lang-en">Location</span></a>
+            <button onclick="toggleLanguage()" type="button" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm text-left w-full"><span class="lang-zh">EN</span><span class="lang-en">中文</span></button>
+            <a href="#contact" class="block mt-3 px-5 py-3 rounded-full bg-brand-gold text-brand-dark text-center text-xs font-semibold uppercase tracking-wider"><span class="lang-zh">联系我们</span><span class="lang-en">Contact Us</span></a>
         </div>
     </nav>
 
@@ -206,7 +240,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="https://wa.me/6591520999" target="_blank" class="w-full py-3.5 rounded-xl border border-white/20 text-center text-sm font-medium hover:border-brand-gold hover:text-brand-gold transition-colors flex items-center justify-center">
+                    <a href="https://wa.me/6591520999" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-xl border border-white/20 text-center text-sm font-medium hover:border-brand-gold hover:text-brand-gold transition-colors flex items-center justify-center">
                         <span class="lang-zh">咨询基础会员</span><span class="lang-en">Enquire Basic Membership</span>
                     </a>
                 </div>
@@ -253,7 +287,7 @@
                             </li>
                         </ul>
                     </div>
-                    <a href="https://wa.me/6591520999" target="_blank" class="w-full py-3.5 rounded-xl bg-brand-gold text-brand-dark text-center text-sm font-semibold hover:bg-brand-goldLight transition-colors flex items-center justify-center">
+                    <a href="https://wa.me/6591520999" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-xl bg-brand-gold text-brand-dark text-center text-sm font-semibold hover:bg-brand-goldLight transition-colors flex items-center justify-center">
                         <span class="lang-zh">咨询家庭席位</span><span class="lang-en">Enquire Family Slot</span>
                     </a>
                 </div>
@@ -289,13 +323,19 @@
                     <span class="lang-zh">我们的团队将为您提供个性化的咨询服务，解答您的所有疑问。</span>
                     <span class="lang-en">Our team will provide personalized consultation and answer all your questions.</span>
                 </p>
-                <a href="https://wa.me/6591520999" target="_blank" class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-brand-gold text-brand-dark font-bold text-sm hover:bg-brand-goldLight transition-all shadow-lg shadow-brand-gold/20">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                    </svg>
-                    <span class="lang-zh">通过 WhatsApp 咨询</span>
-                    <span class="lang-en">Chat on WhatsApp</span>
-                </a>
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <a href="https://wa.me/6591520999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-brand-gold text-brand-dark font-bold text-sm hover:bg-brand-goldLight transition-all shadow-lg shadow-brand-gold/20">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                        </svg>
+                        <span class="lang-zh">通过 WhatsApp 咨询</span>
+                        <span class="lang-en">Chat on WhatsApp</span>
+                    </a>
+                    <a href="shop.html" class="inline-flex items-center justify-center px-10 py-4 rounded-full border border-white/20 text-neutral-300 font-medium text-sm hover:border-brand-gold hover:text-brand-gold transition-all">
+                        <span class="lang-zh">浏览古筝商城</span>
+                        <span class="lang-en">Browse the Guzheng Shop</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -499,6 +539,12 @@
 
     <!-- Footer -->
     <footer class="py-10 border-t border-white/10 text-center text-neutral-500 text-xs bg-brand-dark">
+        <div class="flex items-center justify-center gap-6 mb-4 text-neutral-400">
+            <a href="index.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">主页</span><span class="lang-en">Home</span></a>
+            <a href="shop.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">商城</span><span class="lang-en">Shop</span></a>
+            <a href="blog.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">博客</span><span class="lang-en">Blog</span></a>
+            <a href="#contact" class="hover:text-brand-gold transition-colors"><span class="lang-zh">联系我们</span><span class="lang-en">Contact</span></a>
+        </div>
         <p>© 2026 逸梅草堂 • YMCT. All rights reserved.</p>
         <p class="mt-2">
             <span class="lang-zh">高端华乐艺术俱乐部</span>
@@ -506,24 +552,6 @@
         </p>
     </footer>
 
-    <!-- Language Toggle Script -->
-    <script>
-        function toggleLanguage() {
-            const html = document.documentElement;
-            const currentLang = html.getAttribute('lang');
-            const newLang = currentLang === 'zh-SG' ? 'en' : 'zh-SG';
-            
-            html.setAttribute('lang', newLang);
-            localStorage.setItem('preferredLanguage', newLang);
-        }
-
-        // Apply saved language preference on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferredLanguage');
-            if (savedLang) {
-                document.documentElement.setAttribute('lang', savedLang);
-            }
-        });
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 </html>

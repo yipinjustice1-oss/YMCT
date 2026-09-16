@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-SG" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结账 Checkout | 逸梅草堂 YMCT</title>
+    <meta name="robots" content="noindex">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#121316', card: '#1A1C20', gold: '#C5A880', goldLight: '#DFC9A8',
+                            jade: '#2D4A43', cream: '#F9F8F6', muted: '#9CA3AF'
+                        }
+                    },
+                    fontFamily: { serif: ['"Noto Serif SC"', 'serif'], sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :lang(zh-SG) .lang-en { display: none !important; }
+        :lang(en) .lang-zh { display: none !important; }
+    </style>
+</head>
+<body class="bg-brand-dark text-brand-cream font-sans antialiased selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="WhatsApp Image 2026-08-09 at 18.57.27_2.jpeg" alt="逸梅草堂 YMCT" class="h-10 w-auto invert opacity-90 object-contain" onerror="this.style.display='none'">
+                <span class="font-serif text-xl font-bold tracking-widest text-brand-gold">逸梅草堂</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-7 text-sm text-neutral-300 font-medium">
+                <a href="shop.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">返回商城</span><span class="lang-en">Back to Shop</span></a>
+                <a href="index.html#contact" class="hover:text-brand-gold transition-colors"><span class="lang-zh">联系我们</span><span class="lang-en">Contact Us</span></a>
+            </div>
+            <div class="flex items-center space-x-3 md:space-x-4">
+                <button onclick="toggleLanguage()" type="button" aria-label="Toggle language" class="flex items-center gap-1.5 text-neutral-400 hover:text-brand-gold transition-colors text-sm font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-8 px-6 text-center">
+        <h1 class="font-serif text-3xl md:text-4xl font-bold mb-2">
+            <span class="lang-zh">结账</span><span class="lang-en">Checkout</span>
+        </h1>
+        <p class="text-neutral-400 text-sm">
+            <span class="lang-zh">请核对订单并填写配送资料，完成后我们将通过 WhatsApp 与您确认订单及付款。</span>
+            <span class="lang-en">Review your order and fill in your delivery details. We'll confirm the order and payment with you over WhatsApp.</span>
+        </p>
+    </header>
+
+    <!-- Empty cart notice -->
+    <div id="empty-cart-notice" class="hidden max-w-xl mx-auto px-6 pb-24 text-center">
+        <div class="bg-brand-card border border-white/10 rounded-2xl p-10">
+            <p class="text-neutral-300 mb-6">
+                <span class="lang-zh">您的购物车目前是空的。</span>
+                <span class="lang-en">Your cart is currently empty.</span>
+            </p>
+            <a href="shop.html" class="inline-flex px-6 py-3 rounded-full bg-brand-gold text-brand-dark text-sm font-semibold hover:bg-brand-goldLight transition-colors">
+                <span class="lang-zh">前往商城选购</span><span class="lang-en">Browse the Shop</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Checkout form -->
+    <section id="checkout-section" class="px-6 pb-24">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10">
+
+            <!-- Left: form -->
+            <form id="checkout-form" class="lg:col-span-3 space-y-8" novalidate>
+                <!-- Step 1: Contact & shipping -->
+                <div class="bg-brand-card border border-white/10 rounded-2xl p-6 md:p-8">
+                    <h2 class="font-serif text-lg font-bold text-brand-gold mb-5">
+                        <span class="lang-zh">1. 联系与配送资料</span><span class="lang-en">1. Contact & Delivery Details</span>
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs text-neutral-400 mb-1.5" for="cf-name"><span class="lang-zh">姓名 *</span><span class="lang-en">Full Name *</span></label>
+                            <input id="cf-name" name="name" type="text" required class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-neutral-400 mb-1.5" for="cf-phone"><span class="lang-zh">电话 *</span><span class="lang-en">Phone Number *</span></label>
+                            <input id="cf-phone" name="phone" type="tel" required class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold" placeholder="+65 8123 4567">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-neutral-400 mb-1.5" for="cf-email"><span class="lang-zh">电邮 *</span><span class="lang-en">Email *</span></label>
+                            <input id="cf-email" name="email" type="email" required class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs text-neutral-400 mb-1.5" for="cf-address"><span class="lang-zh">配送地址 *</span><span class="lang-en">Delivery Address *</span></label>
+                            <input id="cf-address" name="address" type="text" required class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-neutral-400 mb-1.5" for="cf-postal"><span class="lang-zh">邮编 *</span><span class="lang-en">Postal Code *</span></label>
+                            <input id="cf-postal" name="postal" type="text" required pattern="[0-9]{6}" title="6-digit Singapore postal code" class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs text-neutral-400 mb-1.5" for="cf-notes"><span class="lang-zh">订单备注（选填）</span><span class="lang-en">Order Notes (optional)</span></label>
+                            <textarea id="cf-notes" name="notes" rows="2" class="w-full bg-brand-dark border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Payment -->
+                <div class="bg-brand-card border border-white/10 rounded-2xl p-6 md:p-8">
+                    <h2 class="font-serif text-lg font-bold text-brand-gold mb-5">
+                        <span class="lang-zh">2. 付款方式</span><span class="lang-en">2. Payment Method</span>
+                    </h2>
+                    <div class="space-y-3">
+                        <label class="flex items-start gap-3 p-4 rounded-xl border border-white/15 cursor-pointer has-[:checked]:border-brand-gold has-[:checked]:bg-brand-gold/5">
+                            <input type="radio" name="payment" value="paynow" checked onchange="ymctRenderPaymentDetail()" class="mt-1 accent-brand-gold">
+                            <span>
+                                <span class="block text-sm font-medium text-brand-cream"><span class="lang-zh">PayNow 扫码支付</span><span class="lang-en">PayNow QR</span></span>
+                                <span class="block text-xs text-neutral-400 mt-0.5"><span class="lang-zh">扫描二维码即时付款</span><span class="lang-en">Scan and pay instantly</span></span>
+                            </span>
+                        </label>
+                        <label class="flex items-start gap-3 p-4 rounded-xl border border-white/15 cursor-pointer has-[:checked]:border-brand-gold has-[:checked]:bg-brand-gold/5">
+                            <input type="radio" name="payment" value="bank" onchange="ymctRenderPaymentDetail()" class="mt-1 accent-brand-gold">
+                            <span>
+                                <span class="block text-sm font-medium text-brand-cream"><span class="lang-zh">银行转账</span><span class="lang-en">Bank Transfer</span></span>
+                                <span class="block text-xs text-neutral-400 mt-0.5"><span class="lang-zh">转账后请保留收据</span><span class="lang-en">Please keep your transfer receipt</span></span>
+                            </span>
+                        </label>
+                        <label class="flex items-start gap-3 p-4 rounded-xl border border-white/15 cursor-pointer has-[:checked]:border-brand-gold has-[:checked]:bg-brand-gold/5">
+                            <input type="radio" name="payment" value="cash" onchange="ymctRenderPaymentDetail()" class="mt-1 accent-brand-gold">
+                            <span>
+                                <span class="block text-sm font-medium text-brand-cream"><span class="lang-zh">现场付款 / 支票（到馆自取）</span><span class="lang-en">Cash / Cheque on Collection</span></span>
+                                <span class="block text-xs text-neutral-400 mt-0.5"><span class="lang-zh">于 3 Jalan Tupai 现场付款取货</span><span class="lang-en">Pay and collect at 3 Jalan Tupai</span></span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Payment detail panel -->
+                    <div id="payment-detail" class="mt-5"></div>
+
+                    <!--
+                        TODO (business owner): replace the PayNow QR placeholder.
+                        1. Save your real PayNow QR code image as: assets/paynow-qr.png
+                        2. It will automatically replace the placeholder graphic above
+                           once that file exists at that path — no code changes needed
+                           beyond adding the file (see README.md "Checkout & Payments").
+                    -->
+                </div>
+            </form>
+
+            <!-- Right: order summary -->
+            <div class="lg:col-span-2">
+                <div class="sticky top-28 bg-brand-card border border-white/10 rounded-2xl p-6">
+                    <h2 class="font-serif text-lg font-bold mb-4">
+                        <span class="lang-zh">订单摘要</span><span class="lang-en">Order Summary</span>
+                    </h2>
+                    <div id="summary-items" class="space-y-3 mb-4 max-h-64 overflow-y-auto pr-1"></div>
+                    <div class="border-t border-white/10 pt-4 space-y-2 text-sm">
+                        <div class="flex justify-between text-neutral-400">
+                            <span><span class="lang-zh">小计</span><span class="lang-en">Subtotal</span></span>
+                            <span id="summary-subtotal">S$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-neutral-400">
+                            <span><span class="lang-zh">运费</span><span class="lang-en">Shipping</span></span>
+                            <span id="summary-shipping">S$0.00</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-brand-cream text-base pt-2">
+                            <span><span class="lang-zh">总计</span><span class="lang-en">Total</span></span>
+                            <span id="summary-total">S$0.00</span>
+                        </div>
+                    </div>
+                    <button type="button" onclick="ymctSubmitOrder()" class="w-full mt-6 py-3.5 rounded-xl bg-brand-gold text-brand-dark text-center text-sm font-semibold hover:bg-brand-goldLight transition-colors">
+                        <span class="lang-zh">确认并提交订单</span><span class="lang-en">Confirm & Submit Order</span>
+                    </button>
+                    <p id="form-error" class="hidden text-xs text-red-400 mt-3"></p>
+                    <p class="text-[11px] text-neutral-500 mt-3 text-center">
+                        <span class="lang-zh">提交后订单详情将生成，您可通过 WhatsApp 发送给我们以确认付款与配送。</span>
+                        <span class="lang-en">After submitting, your order details are generated so you can send them to us on WhatsApp to confirm payment and delivery.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation -->
+    <section id="confirmation-section" class="hidden px-6 pb-24">
+        <div class="max-w-2xl mx-auto bg-brand-card border border-brand-gold/40 rounded-2xl p-8 md:p-10 text-center">
+            <div class="w-16 h-16 bg-brand-gold/10 rounded-full flex items-center justify-center mb-6 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+            </div>
+            <h2 class="font-serif text-2xl font-bold mb-2">
+                <span class="lang-zh">订单已生成</span><span class="lang-en">Order Created</span>
+            </h2>
+            <p class="text-neutral-400 text-sm mb-6">
+                <span class="lang-zh">订单编号</span><span class="lang-en">Order Number</span>: <span id="order-number" class="text-brand-gold font-semibold"></span>
+            </p>
+            <div id="order-receipt" class="text-left bg-brand-dark border border-white/10 rounded-xl p-5 text-sm text-neutral-300 whitespace-pre-line mb-8"></div>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button type="button" onclick="ymctSendWhatsApp()" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-brand-gold text-brand-dark font-semibold text-sm hover:bg-brand-goldLight transition-all">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    <span class="lang-zh">通过 WhatsApp 发送订单</span><span class="lang-en">Send Order via WhatsApp</span>
+                </button>
+                <button type="button" onclick="ymctCopyOrder()" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full border border-white/20 text-neutral-300 font-medium text-sm hover:border-brand-gold hover:text-brand-gold transition-all">
+                    <span id="copy-btn-label"><span class="lang-zh">复制订单摘要</span><span class="lang-en">Copy Order Summary</span></span>
+                </button>
+            </div>
+            <a href="shop.html" class="inline-block mt-8 text-xs text-neutral-500 hover:text-brand-gold underline">
+                <span class="lang-zh">继续购物</span><span class="lang-en">Continue Shopping</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-white/10 text-center text-neutral-500 text-xs bg-brand-dark">
+        <p>© 2026 逸梅草堂 • YMCT. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/main.js"></script>
+    <script>
+        const YMCT_WHATSAPP_NUMBER = '6591520999';
+        let ymctLastOrderText = '';
+
+        function summaryLineHtml(line) {
+            const p = line.product;
+            return `
+            <div class="flex justify-between text-sm">
+                <span class="text-neutral-300"><span class="lang-zh">${p.name_zh}</span><span class="lang-en">${p.name_en}</span> × ${line.qty}</span>
+                <span class="text-neutral-400 whitespace-nowrap ml-3">${ymctFormatPrice(line.lineTotal)}</span>
+            </div>`;
+        }
+
+        function renderSummary() {
+            const lines = ymctCartLines();
+            const emptyNotice = document.getElementById('empty-cart-notice');
+            const checkoutSection = document.getElementById('checkout-section');
+            if (lines.length === 0) {
+                emptyNotice.classList.remove('hidden');
+                checkoutSection.classList.add('hidden');
+                return;
+            }
+            emptyNotice.classList.add('hidden');
+            checkoutSection.classList.remove('hidden');
+
+            document.getElementById('summary-items').innerHTML = lines.map(summaryLineHtml).join('');
+            const subtotal = ymctCartSubtotal();
+            const shipping = ymctShippingCost(subtotal);
+            document.getElementById('summary-subtotal').textContent = ymctFormatPrice(subtotal);
+            document.getElementById('summary-shipping').textContent = shipping === 0 ? (document.documentElement.lang === 'zh-SG' ? '免费' : 'Free') : ymctFormatPrice(shipping);
+            document.getElementById('summary-total').textContent = ymctFormatPrice(subtotal + shipping);
+        }
+
+        function ymctRenderPaymentDetail() {
+            const method = document.querySelector('input[name="payment"]:checked').value;
+            const el = document.getElementById('payment-detail');
+            const isZh = document.documentElement.lang === 'zh-SG';
+            if (method === 'paynow') {
+                el.innerHTML = `
+                <div class="flex flex-col sm:flex-row items-center gap-5 p-4 bg-brand-dark border border-white/10 rounded-xl">
+                    <img src="assets/paynow-qr.png" alt="PayNow QR" class="w-36 h-36 rounded-lg border border-white/10 object-contain bg-white/5"
+                         onerror="this.onerror=null; this.src='assets/paynow-qr-placeholder.svg';">
+                    <div class="text-xs text-neutral-400 leading-relaxed">
+                        <span class="lang-zh">使用银行 App 扫描二维码完成付款，付款后点击右侧「确认并提交订单」，我们会通过 WhatsApp 与您核实。</span>
+                        <span class="lang-en">Scan the QR with your banking app to pay. After paying, click "Confirm & Submit Order" — we'll verify it with you over WhatsApp.</span>
+                    </div>
+                </div>`;
+            } else if (method === 'bank') {
+                el.innerHTML = `
+                <div class="p-4 bg-brand-dark border border-white/10 rounded-xl text-xs text-neutral-400 leading-relaxed space-y-1">
+                    <p class="text-neutral-300 font-medium">${isZh ? '银行转账资料（示例，请由商家更新）' : 'Bank Transfer Details (placeholder — to be updated by business)'}</p>
+                    <p>${isZh ? '银行名称' : 'Bank'}: [Your Bank Name]</p>
+                    <p>${isZh ? '账户名称' : 'Account Name'}: YMCT Pte Ltd</p>
+                    <p>${isZh ? '账号' : 'Account Number'}: [Your Account Number]</p>
+                    <p class="pt-1">${isZh ? '转账后请保留收据，提交订单后我们会与您确认。' : 'Please keep your transfer receipt — we will confirm with you after you submit the order.'}</p>
+                </div>`;
+            } else {
+                el.innerHTML = `
+                <div class="p-4 bg-brand-dark border border-white/10 rounded-xl text-xs text-neutral-400 leading-relaxed">
+                    <span class="lang-zh">请于 3 Jalan Tupai, Singapore 249134 现场付款并取货，我们会与您预约时间。</span>
+                    <span class="lang-en">Please pay and collect in person at 3 Jalan Tupai, Singapore 249134 — we'll arrange a time with you.</span>
+                </div>`;
+            }
+        }
+
+        function paymentMethodLabel(method) {
+            const labels = { paynow: 'PayNow QR', bank: 'Bank Transfer', cash: 'Cash / Cheque on Collection' };
+            return labels[method] || method;
+        }
+
+        function ymctSubmitOrder() {
+            const lines = ymctCartLines();
+            if (lines.length === 0) return;
+
+            const form = document.getElementById('checkout-form');
+            const errorEl = document.getElementById('form-error');
+            if (!form.reportValidity()) {
+                errorEl.textContent = document.documentElement.lang === 'zh-SG' ? '请填写所有必填字段。' : 'Please fill in all required fields.';
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            errorEl.classList.add('hidden');
+
+            const data = new FormData(form);
+            const subtotal = ymctCartSubtotal();
+            const shipping = ymctShippingCost(subtotal);
+            const total = subtotal + shipping;
+            const orderNumber = 'YMCT-' + Date.now().toString(36).toUpperCase();
+
+            const itemLines = lines.map(l => `- ${l.product.name_en} (${l.product.name_zh}) x${l.qty} — ${ymctFormatPrice(l.lineTotal)}`).join('\n');
+            const receiptText =
+`Order: ${orderNumber}
+Name: ${data.get('name')}
+Phone: ${data.get('phone')}
+Email: ${data.get('email')}
+Address: ${data.get('address')}, Singapore ${data.get('postal')}
+${data.get('notes') ? 'Notes: ' + data.get('notes') + '\n' : ''}
+Items:
+${itemLines}
+
+Subtotal: ${ymctFormatPrice(subtotal)}
+Shipping: ${shipping === 0 ? 'Free' : ymctFormatPrice(shipping)}
+Total: ${ymctFormatPrice(total)}
+Payment Method: ${paymentMethodLabel(data.get('payment'))}`;
+
+            try {
+                const orders = JSON.parse(localStorage.getItem('ymct_orders') || '[]');
+                orders.push({ orderNumber: orderNumber, createdAt: new Date().toISOString(), text: receiptText });
+                localStorage.setItem('ymct_orders', JSON.stringify(orders));
+            } catch (e) { /* localStorage unavailable — order still shown/sent this session */ }
+
+            ymctLastOrderText = receiptText;
+            document.getElementById('order-number').textContent = orderNumber;
+            document.getElementById('order-receipt').textContent = receiptText;
+            document.getElementById('checkout-section').classList.add('hidden');
+            document.getElementById('empty-cart-notice').classList.add('hidden');
+            document.getElementById('confirmation-section').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            ymctClearCart();
+        }
+
+        function ymctSendWhatsApp() {
+            const url = 'https://wa.me/' + YMCT_WHATSAPP_NUMBER + '?text=' + encodeURIComponent(ymctLastOrderText);
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        async function ymctCopyOrder() {
+            const label = document.getElementById('copy-btn-label');
+            try {
+                await navigator.clipboard.writeText(ymctLastOrderText);
+                const isZh = document.documentElement.lang === 'zh-SG';
+                label.textContent = isZh ? '已复制！' : 'Copied!';
+                setTimeout(() => {
+                    label.innerHTML = '<span class="lang-zh">复制订单摘要</span><span class="lang-en">Copy Order Summary</span>';
+                }, 2000);
+            } catch (e) {
+                /* Clipboard API unavailable — fall back to selecting the receipt text */
+                const range = document.createRange();
+                range.selectNodeContents(document.getElementById('order-receipt'));
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSummary();
+            ymctRenderPaymentDetail();
+        });
+    </script>
+</body>
+</html>
