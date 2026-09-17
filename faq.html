@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-SG" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常见问题 FAQ | 古筝课程 Guzheng Lessons | 逸梅草堂 YMCT</title>
+    <meta name="description" content="关于古筝课程、体验课、会员与练习场地的常见问题解答。FAQ about guzheng lessons, trial classes, membership, and practice room access at YMCT Singapore.">
+    <link rel="canonical" href="https://unihomesg.com/faq.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#121316', card: '#1A1C20', gold: '#C5A880', goldLight: '#DFC9A8',
+                            jade: '#2D4A43', cream: '#F9F8F6', muted: '#9CA3AF'
+                        }
+                    },
+                    fontFamily: { serif: ['"Noto Serif SC"', 'serif'], sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :lang(zh-SG) .lang-en { display: none !important; }
+        :lang(en) .lang-zh { display: none !important; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Do I need to already know how to play?", "acceptedAnswer": { "@type": "Answer", "text": "No. Trial classes and beginner lessons are designed for complete beginners of any age." } },
+            { "@type": "Question", "name": "Do I need to own a guzheng before starting?", "acceptedAnswer": { "@type": "Answer", "text": "No — you can start lessons and use the practice room's instruments first, then decide whether to buy your own from our shop." } },
+            { "@type": "Question", "name": "What ages do you teach?", "acceptedAnswer": { "@type": "Answer", "text": "Both children and adults, with lessons paced to the individual student." } }
+        ]
+    }
+    </script>
+</head>
+<body class="bg-brand-dark text-brand-cream font-sans antialiased selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="WhatsApp Image 2026-08-09 at 18.57.27_2.jpeg" alt="逸梅草堂 YMCT" class="h-10 w-auto invert opacity-90 object-contain" onerror="this.style.display='none'">
+                <span class="font-serif text-xl font-bold tracking-widest text-brand-gold">逸梅草堂</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-7 text-sm text-neutral-300 font-medium">
+                <a href="guzheng-trial.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">体验课</span><span class="lang-en">Trial Class</span></a>
+                <a href="index.html#membership" class="hover:text-brand-gold transition-colors"><span class="lang-zh">会员体系</span><span class="lang-en">Membership</span></a>
+                <a href="shop.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">商城</span><span class="lang-en">Shop</span></a>
+                <a href="blog.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">博客</span><span class="lang-en">Blog</span></a>
+                <a href="faq.html" class="text-brand-gold"><span class="lang-zh">常见问题</span><span class="lang-en">FAQ</span></a>
+            </div>
+            <div class="flex items-center space-x-3 md:space-x-4">
+                <button onclick="toggleLanguage()" type="button" aria-label="Toggle language" class="hidden sm:flex items-center gap-1.5 text-neutral-400 hover:text-brand-gold transition-colors text-sm font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+                </button>
+                <a href="guzheng-trial.html" class="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark text-xs font-semibold uppercase tracking-wider hover:bg-brand-goldLight transition-all whitespace-nowrap">
+                    <span class="lang-zh">预约体验课</span><span class="lang-en">Book a Trial</span>
+                </a>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-neutral-300 hover:text-brand-gold p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-brand-dark px-6 py-4 space-y-1">
+            <a href="guzheng-trial.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">体验课</span><span class="lang-en">Trial Class</span></a>
+            <a href="index.html#membership" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">会员体系</span><span class="lang-en">Membership</span></a>
+            <a href="shop.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">商城</span><span class="lang-en">Shop</span></a>
+            <a href="blog.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">博客</span><span class="lang-en">Blog</span></a>
+            <a href="faq.html" class="block py-2.5 text-brand-gold text-sm"><span class="lang-zh">常见问题</span><span class="lang-en">FAQ</span></a>
+            <button onclick="toggleLanguage()" type="button" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm text-left w-full"><span class="lang-zh">EN</span><span class="lang-en">中文</span></button>
+            <a href="guzheng-trial.html" class="block mt-3 px-5 py-3 rounded-full bg-brand-gold text-brand-dark text-center text-xs font-semibold uppercase tracking-wider"><span class="lang-zh">预约体验课</span><span class="lang-en">Book a Trial</span></a>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 md:pt-40 md:pb-16 px-6 text-center">
+        <h1 class="font-serif text-3xl md:text-5xl font-bold mb-4">
+            <span class="lang-zh">常见问题解答</span><span class="lang-en">Frequently Asked Questions</span>
+        </h1>
+        <p class="text-neutral-400 text-sm md:text-base max-w-xl mx-auto">
+            <span class="lang-zh">关于古筝课程、体验课、会员与练习场地，您想了解的都在这里。</span>
+            <span class="lang-en">Everything you might want to know about our guzheng lessons, trial classes, membership, and practice room access.</span>
+        </p>
+    </header>
+
+    <main class="px-6 pb-24">
+        <div class="max-w-3xl mx-auto space-y-6">
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">我完全没有基础，可以报名体验课吗？</span>
+                    <span class="lang-en">I have zero experience — can I still book a trial class?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">当然可以。体验课专为零基础学员设计，无论是孩子还是成人都能轻松上手。</span>
+                    <span class="lang-en">Absolutely. Trial classes are designed for complete beginners, whether you're a child or an adult.</span>
+                </p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">上课前需要自己先买古筝吗？</span>
+                    <span class="lang-en">Do I need to buy a guzheng before I start lessons?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">不需要。体验课与初期课程可先使用馆内古筝，确定孩子有兴趣后再考虑购买。如需选购，可参考我们的<a href="shop.html" class="text-brand-gold underline hover:text-brand-goldLight">古筝商城</a>与<a href="blog/guzheng-buying-guide.html" class="text-brand-gold underline hover:text-brand-goldLight">选购指南</a>。</span>
+                    <span class="lang-en">No — trial and early lessons can use an in-studio instrument. Once you've confirmed genuine interest, browse our <a href="shop.html" class="text-brand-gold underline hover:text-brand-goldLight">guzheng shop</a> and <a href="blog/guzheng-buying-guide.html" class="text-brand-gold underline hover:text-brand-goldLight">buying guide</a> to choose one.</span>
+                </p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">体验课多少钱，上多久？</span>
+                    <span class="lang-en">How much does a trial class cost, and how long is it?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">具体价格与时长请见<a href="guzheng-trial.html" class="text-brand-gold underline hover:text-brand-goldLight">体验课页面</a>。</span>
+                    <span class="lang-en">See our <a href="guzheng-trial.html" class="text-brand-gold underline hover:text-brand-goldLight">trial class page</a> for current pricing and length.</span>
+                </p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">你们教什么年龄层？</span>
+                    <span class="lang-en">What age groups do you teach?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">孩子与成人都欢迎，课程节奏会根据学员年龄与程度调整。详见<a href="kids-guzheng.html" class="text-brand-gold underline hover:text-brand-goldLight">儿童古筝课程</a>与<a href="adult-guzheng.html" class="text-brand-gold underline hover:text-brand-goldLight">成人古筝课程</a>。</span>
+                    <span class="lang-en">Both children and adults are welcome — lessons are paced to the student's age and level. See our <a href="kids-guzheng.html" class="text-brand-gold underline hover:text-brand-goldLight">kids guzheng</a> and <a href="adult-guzheng.html" class="text-brand-gold underline hover:text-brand-goldLight">adult guzheng</a> pages.</span>
+                </p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">孩子担心无法坚持，是否可以直接按月支付？</span>
+                    <span class="lang-en">Worried the child might not persist — can we pay monthly?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">可以。除年度会员预付特惠外，我们提供弹性月付方案，同时会员协议内明确标注合理的退费与转让规则。</span>
+                    <span class="lang-en">Yes. Besides the annual prepaid discount, we offer flexible monthly plans, with reasonable refund and transfer rules clearly outlined in the membership agreement.</span>
+                </p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">陪练老师的具体服务模式是怎样的？</span>
+                    <span class="lang-en">How does the practice-room teacher support work?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">课余时间到馆练琴时，驻场陪练老师将全程提供手型纠正、节奏指导与视唱练耳辅助，确保每一次练习都精准有效。</span>
+                    <span class="lang-en">When you drop by to practice, an on-site teacher provides continuous posture correction, rhythm guidance, and ear-training support, so every practice session is precise and effective.</span>
+                </p>
+            </div>
+
+            <div class="p-6 rounded-xl bg-brand-card/40 border border-white/5">
+                <h2 class="font-medium text-brand-cream text-base mb-2">
+                    <span class="lang-zh">有登台演出的机会吗？</span>
+                    <span class="lang-en">Are there real performance opportunities?</span>
+                </h2>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">有。我们定期举办国际大师班与正式音乐会演出机会，帮助学员通过舞台实战积累自信与荣誉感。</span>
+                    <span class="lang-en">Yes — we regularly hold international masterclasses and formal concert performances, helping students build real confidence and pride through actual stage experience.</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="max-w-3xl mx-auto text-center mt-12">
+            <p class="text-neutral-400 text-sm mb-4">
+                <span class="lang-zh">还有其他问题？</span><span class="lang-en">Still have questions?</span>
+            </p>
+            <a href="guzheng-trial.html" class="inline-flex px-8 py-3.5 rounded-full bg-brand-gold text-brand-dark text-sm font-semibold hover:bg-brand-goldLight transition-colors">
+                <span class="lang-zh">预约体验课</span><span class="lang-en">Book a Trial Class</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-white/10 text-center text-neutral-500 text-xs bg-brand-dark">
+        <div class="flex items-center justify-center gap-6 mb-4 text-neutral-400">
+            <a href="index.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">主页</span><span class="lang-en">Home</span></a>
+            <a href="shop.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">商城</span><span class="lang-en">Shop</span></a>
+            <a href="blog.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">博客</span><span class="lang-en">Blog</span></a>
+            <a href="index.html#contact" class="hover:text-brand-gold transition-colors"><span class="lang-zh">联系我们</span><span class="lang-en">Contact</span></a>
+        </div>
+        <p>© 2026 逸梅草堂 • YMCT. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>

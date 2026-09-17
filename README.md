@@ -7,11 +7,14 @@ Static, no-build website for 逸梅草堂 (YMCT) — plain HTML + Tailwind CSS (
 | Page | Purpose |
 |---|---|
 | `index.html` | Main marketing page: concept, membership tiers, contact, location, FAQ, T&Cs |
+| `guzheng-trial.html` | Dedicated ad-landing page for a 1-on-1 trial class: price card, selling points, lead form, WhatsApp CTA |
+| `kids-guzheng.html` / `adult-guzheng.html` | Audience-targeted variants of the trial page, for separate ad groups/keywords |
+| `faq.html` | Standalone FAQ page (also used as a Google Ads sitelink target) |
 | `shop.html` | Live guzheng catalog (grouped by series) with an add-to-cart panel |
 | `checkout.html` | Cart review → shipping details → payment method → order confirmation |
 | `blog.html` | Blog index (for SEO) |
 | `blog/*.html` | Individual blog posts, each with its own meta description, canonical URL, and JSON-LD `BlogPosting` schema |
-| `assets/main.js` | Shared JS: language toggle, mobile nav, product catalog, and cart logic used by every page |
+| `assets/main.js` | Shared JS: language toggle, mobile nav, product catalog, cart logic, and the trial-lead-form/conversion-tracking helpers used by every page |
 | `assets/products/*.jpg` | Real product photos, one per guzheng |
 
 ## Checkout & payments
@@ -42,6 +45,19 @@ All products, including series, names, materials, photos, and prices, are define
 
 There is no shipping fee calculated at checkout — each guzheng is a handcrafted, fragile instrument, so delivery is arranged personally with the customer after the order is confirmed (see `ymctSubmitOrder()` in `checkout.html`).
 
+## Google Ads landing pages
+
+`guzheng-trial.html`, `kids-guzheng.html`, and `adult-guzheng.html` exist specifically so paid search traffic lands on a page that matches the ad's keyword (a general club-branding homepage converts worse and costs more per click). Each has a short lead form that, on submit, opens WhatsApp with the form's details pre-filled (same no-backend pattern as checkout) via `ymctSubmitTrialForm()` in `assets/main.js`. A standalone "WhatsApp Us" button on each page is wired separately via `ymctTrackWhatsAppClick()`.
+
+**Two things on `guzheng-trial.html` are placeholders that must be filled in with real information before running any ads — do not launch with these as-is:**
+
+1. **Trial class price and length** — shown in a dashed-border "S$XX for XX minutes" card. This is a factual, public-facing price, so it was deliberately left as an obvious placeholder rather than guessed at.
+2. **Studio photos** — the "Inside Our Studio" section has placeholder tiles. Real photos of 3 Jalan Tupai should replace them (add files under `assets/studio/` and swap the placeholder `<div>` for an `<img>`, following the same pattern as the PayNow QR placeholder above).
+
+**Conversion tracking:** there is no Google Ads/Analytics account connected to this site yet, so `ymctTrackConversion()` in `assets/main.js` is currently a no-op that just logs to the console. To wire up real tracking:
+1. Add the Google tag (`gtag.js`) for your account in `<head>` on every page (or via Google Tag Manager).
+2. Replace the body of `ymctTrackConversion()` with a `gtag('event', 'conversion', { send_to: '...' })` call — use your **primary** conversion action's ID for form submissions, and a separate **secondary** one (marked "Don't use in bidding" in Google Ads) for WhatsApp clicks, so Google doesn't optimise toward cheap clicks that never book.
+
 ## Blog / SEO
 
 Each post under `blog/` is a standalone HTML page with:
@@ -61,5 +77,7 @@ The site is bilingual (Simplified Chinese / English) using a CSS-based toggle: e
 
 - `assets/paynow-qr.png` — real PayNow QR (see above)
 - Bank transfer details in `checkout.html`
+- Trial class price/length and studio photos on `guzheng-trial.html` (see "Google Ads landing pages" above)
+- Google Ads conversion tracking in `ymctTrackConversion()` (see above)
 - `assets/paynow-qr-placeholder.svg`/logo file `WhatsApp Image 2026-08-09 at 18.57.27_2.jpeg` — swap for a proper logo asset
-- Canonical URLs in `blog/*.html` and `blog.html` (currently `https://ymct.example.com/...`) — update once the real domain is live
+- Canonical URLs across all pages use `https://unihomesg.com/...` — update if the production domain differs

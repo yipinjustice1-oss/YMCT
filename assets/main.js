@@ -253,6 +253,73 @@ function ymctUpdateCartBadge() {
     });
 }
 
+/* ---------- Trial lead form + WhatsApp handoff ---------- */
+const YMCT_WHATSAPP_NUMBER = '6591520999';
+
+/*
+ * Conversion tracking stub. This site has no Google Ads/Analytics tag wired
+ * up yet (no account ID was provided), so this is a safe no-op until one is
+ * added. To wire up real Google Ads conversion tracking:
+ *   1. Add the Google tag (gtag.js) snippet for your account in <head> on
+ *      every page (or via Google Tag Manager).
+ *   2. Replace the body of this function with:
+ *        gtag('event', 'conversion', { send_to: 'AW-XXXXXXX/YYYYYYYY' });
+ *      using the primary ("Trial form submit") conversion action's ID for
+ *      formSubmit calls, and a separate secondary conversion ID (marked
+ *      "Don't use in bidding" in Google Ads, per the ads feedback) for
+ *      whatsappClick calls.
+ * Until then this only logs to the console so you can verify the trigger
+ * points are firing correctly during testing.
+ */
+function ymctTrackConversion(eventName) {
+    if (window.gtag) {
+        window.gtag('event', eventName);
+    } else {
+        console.info('[YMCT conversion stub]', eventName, '— wire up gtag() in assets/main.js to send this to Google Ads');
+    }
+}
+
+function ymctTrackWhatsAppClick() {
+    ymctTrackConversion('whatsapp_click');
+}
+
+/*
+ * Generic trial/lead form handler shared by guzheng-trial.html,
+ * kids-guzheng.html, and adult-guzheng.html. Same no-backend pattern as the
+ * shop checkout: builds a WhatsApp message from the form fields and opens
+ * it, since there's no server to receive submissions. `sourceLabel` is
+ * prepended to the message so replies coming from different pages can be
+ * told apart (e.g. "Kids Guzheng page").
+ */
+function ymctSubmitTrialForm(form, sourceLabel) {
+    const errorEl = form.querySelector('.trial-form-error');
+    if (!form.reportValidity()) {
+        if (errorEl) {
+            errorEl.textContent = document.documentElement.lang === 'zh-SG' ? '请填写所有必填字段。' : 'Please fill in all required fields.';
+            errorEl.classList.remove('hidden');
+        }
+        return false;
+    }
+    if (errorEl) errorEl.classList.add('hidden');
+
+    const data = new FormData(form);
+    const lines = [`New trial enquiry — ${sourceLabel}`, ''];
+    for (const [key, value] of data.entries()) {
+        if (String(value).trim() === '') continue;
+        lines.push(`${key}: ${value}`);
+    }
+    const message = lines.join('\n');
+
+    ymctTrackConversion('trial_form_submit');
+
+    const successEl = form.querySelector('.trial-form-success');
+    form.classList.add('hidden');
+    if (successEl) successEl.classList.remove('hidden');
+
+    window.open('https://wa.me/' + YMCT_WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+    return false;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     applySavedLanguage();
     ymctUpdateCartBadge();

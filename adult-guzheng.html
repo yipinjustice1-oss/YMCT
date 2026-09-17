@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-SG" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adult Guzheng Class in Singapore | YMCT</title>
+    <meta name="description" content="Guzheng lessons for adults in Singapore. No experience needed, flexible evening slots, and a calm space to unwind. 新加坡成人古筝课程，零基础可学。">
+    <link rel="canonical" href="https://unihomesg.com/adult-guzheng.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#121316', card: '#1A1C20', gold: '#C5A880', goldLight: '#DFC9A8',
+                            jade: '#2D4A43', cream: '#F9F8F6', muted: '#9CA3AF'
+                        }
+                    },
+                    fontFamily: { serif: ['"Noto Serif SC"', 'serif'], sans: ['"Plus Jakarta Sans"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :lang(zh-SG) .lang-en { display: none !important; }
+        :lang(en) .lang-zh { display: none !important; }
+    </style>
+</head>
+<body class="bg-brand-dark text-brand-cream font-sans antialiased selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="WhatsApp Image 2026-08-09 at 18.57.27_2.jpeg" alt="逸梅草堂 YMCT" class="h-10 w-auto invert opacity-90 object-contain" onerror="this.style.display='none'">
+                <span class="font-serif text-xl font-bold tracking-widest text-brand-gold">逸梅草堂</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-7 text-sm text-neutral-300 font-medium">
+                <a href="kids-guzheng.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">儿童古筝</span><span class="lang-en">Kids Guzheng</span></a>
+                <a href="adult-guzheng.html" class="text-brand-gold"><span class="lang-zh">成人古筝</span><span class="lang-en">Adult Guzheng</span></a>
+                <a href="index.html#membership" class="hover:text-brand-gold transition-colors"><span class="lang-zh">会员体系</span><span class="lang-en">Membership</span></a>
+                <a href="faq.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">常见问题</span><span class="lang-en">FAQ</span></a>
+            </div>
+            <div class="flex items-center space-x-3 md:space-x-4">
+                <button onclick="toggleLanguage()" type="button" aria-label="Toggle language" class="hidden sm:flex items-center gap-1.5 text-neutral-400 hover:text-brand-gold transition-colors text-sm font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span class="lang-zh">EN</span><span class="lang-en">中文</span>
+                </button>
+                <a href="#trial-form" class="hidden sm:inline-flex px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark text-xs font-semibold uppercase tracking-wider hover:bg-brand-goldLight transition-all whitespace-nowrap">
+                    <span class="lang-zh">预约体验课</span><span class="lang-en">Book a Trial</span>
+                </a>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-neutral-300 hover:text-brand-gold p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-brand-dark px-6 py-4 space-y-1">
+            <a href="kids-guzheng.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">儿童古筝</span><span class="lang-en">Kids Guzheng</span></a>
+            <a href="adult-guzheng.html" class="block py-2.5 text-brand-gold text-sm"><span class="lang-zh">成人古筝</span><span class="lang-en">Adult Guzheng</span></a>
+            <a href="index.html#membership" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">会员体系</span><span class="lang-en">Membership</span></a>
+            <a href="faq.html" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm"><span class="lang-zh">常见问题</span><span class="lang-en">FAQ</span></a>
+            <button onclick="toggleLanguage()" type="button" class="block py-2.5 text-neutral-300 hover:text-brand-gold text-sm text-left w-full"><span class="lang-zh">EN</span><span class="lang-en">中文</span></button>
+            <a href="#trial-form" class="block mt-3 px-5 py-3 rounded-full bg-brand-gold text-brand-dark text-center text-xs font-semibold uppercase tracking-wider"><span class="lang-zh">预约体验课</span><span class="lang-en">Book a Trial</span></a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="relative pt-32 pb-16 md:pt-40 md:pb-20 px-6 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-brand-jade/30 via-brand-dark to-brand-dark -z-10"></div>
+        <div class="max-w-3xl mx-auto text-center">
+            <span class="inline-block py-1.5 px-4 rounded-full border border-brand-gold/40 text-brand-gold text-xs tracking-widest uppercase mb-6 bg-brand-gold/5">
+                <span class="lang-zh">成人古筝课程</span><span class="lang-en">Guzheng Lessons for Adults</span>
+            </span>
+            <h1 class="font-serif text-3xl md:text-5xl font-bold text-brand-cream leading-tight mb-6">
+                <span class="lang-zh">零基础也能优雅上手</span>
+                <span class="lang-en">No Experience Needed</span>
+            </h1>
+            <p class="text-neutral-400 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+                <span class="lang-zh">专属老师1对1指导，弹性时段与月付方案，工作之余的一方安静天地。练习场地全天候开放，随时可来放松身心。</span>
+                <span class="lang-en">A private, 1-on-1 teacher, flexible scheduling and monthly payment plans — a calm space to unwind after work. The practice room is open all day whenever you want to drop by.</span>
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#trial-form" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-gold text-brand-dark font-semibold text-sm tracking-wide hover:bg-brand-goldLight transition-all shadow-lg shadow-brand-gold/10 text-center">
+                    <span class="lang-zh">预约我的体验课</span><span class="lang-en">Book My Trial</span>
+                </a>
+                <a href="https://wa.me/6591520999?text=Hi%2C%20I%27d%20like%20to%20find%20out%20more%20about%20adult%20guzheng%20lessons" target="_blank" rel="noopener noreferrer" onclick="ymctTrackWhatsAppClick()" class="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 text-neutral-300 font-medium text-sm hover:border-brand-gold hover:text-brand-gold transition-all text-center">
+                    <span class="lang-zh">WhatsApp 咨询</span><span class="lang-en">WhatsApp Us</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Selling points -->
+    <section class="py-4 px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 rounded-2xl bg-brand-card border border-white/10 text-center">
+                <h3 class="font-serif text-lg font-semibold mb-2">
+                    <span class="lang-zh">弹性上课时段</span><span class="lang-en">Flexible Scheduling</span>
+                </h3>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">可配合工作时间安排课程，包括傍晚与周末时段。</span>
+                    <span class="lang-en">Lessons can fit around your work schedule, including evening and weekend slots.</span>
+                </p>
+            </div>
+            <div class="p-8 rounded-2xl bg-brand-card border border-white/10 text-center">
+                <h3 class="font-serif text-lg font-semibold mb-2">
+                    <span class="lang-zh">随时可用的练习室</span><span class="lang-en">Practice Room, Anytime</span>
+                </h3>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">不限时使用练习场地，驻场老师在场，练习更有效率。</span>
+                    <span class="lang-en">Unlimited access to the practice room, with a teacher on hand to make every session count.</span>
+                </p>
+            </div>
+            <div class="p-8 rounded-2xl bg-brand-card border border-white/10 text-center">
+                <h3 class="font-serif text-lg font-semibold mb-2">
+                    <span class="lang-zh">同好文化社群</span><span class="lang-en">A Community of Fellow Enthusiasts</span>
+                </h3>
+                <p class="text-neutral-400 text-sm leading-relaxed">
+                    <span class="lang-zh">结识志同道合的成人学员，参与沙龙与音乐会演出。</span>
+                    <span class="lang-en">Meet like-minded adult learners, and take part in salons and concert performances.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trial form -->
+    <section id="trial-form" class="py-16 px-6 bg-brand-card/60 border-t border-white/10 mt-8">
+        <div class="max-w-lg mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="font-serif text-2xl md:text-3xl font-bold mb-3">
+                    <span class="lang-zh">预约您的古筝体验课</span><span class="lang-en">Book Your Guzheng Trial</span>
+                </h2>
+                <p class="text-neutral-400 text-sm">
+                    <span class="lang-zh">填写以下信息，我们会尽快与您联系确认时间。</span>
+                    <span class="lang-en">Fill in your details and we'll get back to you shortly to confirm a time.</span>
+                </p>
+            </div>
+
+            <form id="trial-form-el" onsubmit="return ymctSubmitTrialForm(this, 'Adult Guzheng page')" novalidate class="bg-brand-dark border border-white/10 rounded-2xl p-6 md:p-8 space-y-4">
+                <div>
+                    <label class="block text-xs text-neutral-400 mb-1.5" for="tf-name"><span class="lang-zh">姓名 *</span><span class="lang-en">Name *</span></label>
+                    <input id="tf-name" name="Name" type="text" required class="w-full bg-brand-card border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold">
+                </div>
+                <div>
+                    <label class="block text-xs text-neutral-400 mb-1.5" for="tf-phone"><span class="lang-zh">电话 *</span><span class="lang-en">Phone Number *</span></label>
+                    <input id="tf-phone" name="Phone" type="tel" required class="w-full bg-brand-card border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold" placeholder="+65 8123 4567">
+                </div>
+                <div>
+                    <label class="block text-xs text-neutral-400 mb-1.5" for="tf-slot"><span class="lang-zh">希望的上课时段 *</span><span class="lang-en">Preferred Slot *</span></label>
+                    <input id="tf-slot" name="Preferred slot" type="text" required class="w-full bg-brand-card border border-white/15 rounded-lg px-4 py-2.5 text-sm text-brand-cream focus:outline-none focus:border-brand-gold" placeholder="e.g. Weekday evenings">
+                </div>
+                <p class="trial-form-error hidden text-xs text-red-400"></p>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-gold text-brand-dark text-center text-sm font-semibold hover:bg-brand-goldLight transition-colors">
+                    <span class="lang-zh">提交预约</span><span class="lang-en">Submit Booking Request</span>
+                </button>
+                <p class="text-[11px] text-neutral-500 text-center">
+                    <span class="lang-zh">提交后将通过 WhatsApp 发送给我们的团队。</span>
+                    <span class="lang-en">Submitting opens WhatsApp with your details sent to our team.</span>
+                </p>
+            </form>
+
+            <div class="trial-form-success hidden bg-brand-dark border border-brand-gold/40 rounded-2xl p-8 text-center">
+                <h3 class="font-serif text-xl font-bold mb-2">
+                    <span class="lang-zh">感谢您的预约！</span><span class="lang-en">Thanks for booking!</span>
+                </h3>
+                <p class="text-neutral-400 text-sm">
+                    <span class="lang-zh">WhatsApp 窗口已打开，请发送消息完成预约。</span>
+                    <span class="lang-en">A WhatsApp window has opened — send the message to complete your booking request.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-white/10 text-center text-neutral-500 text-xs bg-brand-dark">
+        <div class="flex items-center justify-center gap-6 mb-4 text-neutral-400">
+            <a href="index.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">主页</span><span class="lang-en">Home</span></a>
+            <a href="kids-guzheng.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">儿童古筝</span><span class="lang-en">Kids Guzheng</span></a>
+            <a href="shop.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">商城</span><span class="lang-en">Shop</span></a>
+            <a href="faq.html" class="hover:text-brand-gold transition-colors"><span class="lang-zh">常见问题</span><span class="lang-en">FAQ</span></a>
+        </div>
+        <p>© 2026 逸梅草堂 • YMCT. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>
