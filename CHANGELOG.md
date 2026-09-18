@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Filled in the trial class price/length placeholder on `guzheng-trial.html` with
+  the business's real numbers: S$68 per trial session, approx. 45 minutes.
+
 ## v1.3.0 — Google Ads Landing Pages (2026-09-17)
 
 Implements the actionable, website-side parts of a Google Ads review: a dedicated,
